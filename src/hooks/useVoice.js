@@ -64,7 +64,7 @@ export function useVoice(onTranscript) {
       console.log("Voice: Microphone access granted.");
       mediaStreamRef.current = stream;
       
-      audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+      audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 24000 });
       const source = audioContextRef.current.createMediaStreamSource(stream);
       
       // Using ScriptProcessor for hackathon simplicity (AudioWorklet is better but more complex to setup in a single file)

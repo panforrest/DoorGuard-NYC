@@ -19,8 +19,8 @@ print(f"Voice API Debug: API_KEY found? {bool(API_KEY)}")
 if API_KEY:
     print(f"Voice API Debug: API_KEY starts with: {API_KEY[:5]}...")
 
-# We use the recommended 2.0 flash model for live bidi-streaming
-MODEL_ID = "gemini-2.0-flash-exp"
+# We use the recommended 3.1 flash model for live bidi-streaming (March 2026)
+MODEL_ID = "gemini-3.1-flash-live-preview"
 
 async def receive_from_client(websocket: WebSocket, session):
     """Receive audio from the React frontend and send to Gemini"""
@@ -35,7 +35,7 @@ async def receive_from_client(websocket: WebSocket, session):
                 # Send raw PCM16 to Gemini via real-time input
                 # The google-genai SDK uses session.send for both text and audio parts
                 try:
-                    await session.send(input=types.Part.from_bytes(data=audio_bytes, mime_type="audio/pcm;rate=16000"))
+                    await session.send(input=types.Part.from_bytes(data=audio_bytes, mime_type="audio/pcm;rate=24000"))
                 except Exception as e:
                     print(f"Error sending audio to Gemini: {e}")
                     break
@@ -128,6 +128,13 @@ async def websocket_endpoint(websocket: WebSocket):
     
     config = types.LiveConnectConfig(
         response_modalities=["AUDIO", "TEXT"],
+        speech_config=types.SpeechConfig(
+            voice_config=types.VoiceConfig(
+                prebuilt_voice_config=types.PrebuiltVoiceConfig(
+                    voice_name="Puck" # Standard Gemini Live voice
+                )
+            )
+        ),
         system_instruction=types.Content(parts=[types.Part.from_text(text=system_instruction)])
     )
 
