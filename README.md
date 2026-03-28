@@ -4,6 +4,8 @@
 
 A voice + vision AI agent that talks to visitors on your behalf, checks NYC Open Data in real time to verify if they're legit, knows your tenant rights, and alerts you with the verdict before you open the door.
 
+🚀 **Live Demo**: [https://doorguard-nyc-fyygzep7wa-uc.a.run.app/](https://doorguard-nyc-fyygzep7wa-uc.a.run.app/)
+
 🏆 **NYC Build With AI Hackathon 2026** — GDG NYC @ NYU Tandon
 
 ## 🎯 Problem
