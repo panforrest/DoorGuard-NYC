@@ -20,7 +20,7 @@ if API_KEY:
     print(f"Voice API Debug: API_KEY starts with: {API_KEY[:5]}...")
 
 # We use the recommended 2.0 flash model for live bidi-streaming
-MODEL_ID = "gemini-3.1-flash-live-preview"
+MODEL_ID = "gemini-2.5-flash-native-audio-latest"
 
 async def receive_from_client(websocket: WebSocket, session):
     """Receive audio from the React frontend and send to Gemini"""
@@ -127,8 +127,7 @@ async def websocket_endpoint(websocket: WebSocket):
     """
     
     config = types.LiveConnectConfig(
-        response_modalities=["AUDIO", "TEXT"],
-        system_instruction=types.Content(parts=[types.Part.from_text(text=system_instruction)])
+        response_modalities=["TEXT"], # Simplified to TEXT first to test stability
     )
 
     try:
