@@ -80,7 +80,10 @@ GOOGLE_CLOUD_PROJECT=your_project_id
 
 ## 👥 Team
 
-- **Forrest Pan** — [GitHub](https://github.com/panforrest) | [LinkedIn](https://www.linkedin.com/in/forrest-pan-153733232/)
+- **Arati Kalor** — aratikalor26@gmail.com
+- **Peter Zhong** — fz2411@nyu.edu
+- **Shweta Shekhar** — ss19623@nyu.edu
+- **Forrest Pan** — fpreactrn@gmail.com
 
 ## 📜 License
 
