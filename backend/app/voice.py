@@ -20,7 +20,7 @@ if API_KEY:
     print(f"Voice API Debug: API_KEY starts with: {API_KEY[:5]}...")
 
 # We use the recommended 2.0 flash model for live bidi-streaming
-MODEL_ID = "gemini-2.5-flash-native-audio-latest"
+MODEL_ID = "gemini-2.0-flash-exp"
 
 async def receive_from_client(websocket: WebSocket, session):
     """Receive audio from the React frontend and send to Gemini"""
@@ -132,10 +132,11 @@ async def websocket_endpoint(websocket: WebSocket):
     )
 
     try:
-        print(f"Attempting to connect to Gemini Live (Model: {MODEL_ID})...")
+        print(f"DEBUG: Attempting to connect to Gemini Live (Model: {MODEL_ID})...")
         # Establish the Bidi-Streaming connection with Gemini Live
         async with client.aio.live.connect(model=MODEL_ID, config=config) as session:
-            print("Successfully connected to Gemini Live API!")
+            print("DEBUG: Successfully connected to Gemini Live API!")
+            await websocket.send_json({"type": "status", "text": "Connected to Gemini Live"})
             
             # Start concurrent tasks for bidi communication
             client_task = asyncio.create_task(receive_from_client(websocket, session))

@@ -14,6 +14,7 @@ load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../.env
 
 from .voice import router as voice_router
 
+print("--- DOORGUARD API STARTING ---")
 app = FastAPI(title="DoorGuard NYC API")
 
 # CORS — allow frontend
