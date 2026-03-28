@@ -10,6 +10,6 @@ client = genai.Client(api_key=API_KEY)
 print("Listing models...")
 try:
     for model in client.models.list():
-        print(f"Model: {model.name}, Supported Actions: {model.supported_generation_methods}")
+        print(f"Model: {model.name}, Actions: {model.supported_actions}")
 except Exception as e:
     print(f"Error listing models: {e}")
