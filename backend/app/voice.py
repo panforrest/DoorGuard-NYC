@@ -20,7 +20,7 @@ if API_KEY:
     print(f"Voice API Debug: API_KEY starts with: {API_KEY[:5]}...")
 
 # We use the recommended 2.0 flash model for live bidi-streaming
-MODEL_ID = "gemini-2.0-flash"
+MODEL_ID = "gemini-2.0-flash-exp"
 
 async def receive_from_client(websocket: WebSocket, session):
     """Receive audio from the React frontend and send to Gemini"""
@@ -109,7 +109,7 @@ async def websocket_endpoint(websocket: WebSocket):
         return
         
     try:
-        client = genai.Client(api_key=API_KEY)
+        client = genai.Client(api_key=API_KEY, http_options={'api_version': 'v1alpha'})
         print("Gemini client initialized.")
     except Exception as e:
         print(f"Failed to initialize Gemini client: {e}")
