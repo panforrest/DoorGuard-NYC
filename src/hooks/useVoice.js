@@ -110,7 +110,7 @@ export function useVoice(onTranscript) {
     if (mediaStreamRef.current) {
       mediaStreamRef.current.getTracks().forEach(track => track.stop());
     }
-    if (audioContextRef.current) {
+    if (audioContextRef.current && audioContextRef.current.state !== 'closed') {
       audioContextRef.current.close();
     }
   };
