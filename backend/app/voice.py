@@ -127,7 +127,8 @@ async def websocket_endpoint(websocket: WebSocket):
     """
     
     config = types.LiveConnectConfig(
-        response_modalities=["TEXT"], # Simplified to TEXT first to test stability
+        response_modalities=["AUDIO", "TEXT"],
+        system_instruction=types.Content(parts=[types.Part.from_text(text=system_instruction)])
     )
 
     try:
